@@ -10,6 +10,7 @@ public class Property : BaseEntity
     public decimal Price { get; set; }
     public PropertyType PropertyType { get; set; }
     public ListingType ListingType { get; set; }
+    public PropertyStatus Status { get; set; }
     public int? Bedrooms { get; set; }
     public int? Bathrooms { get; set; }
     public decimal? AreaInSquareFeet { get; set; }
