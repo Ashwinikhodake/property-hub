@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using PropertyHub.Infrastructure.Persistence;
+using PropertyHub.Application.Features.Authentication.Register;
+using PropertyHub.Infrastructure.Persistence.Repositories;
+using PropertyHub.Infrastructure.Security;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +14,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<PropertyHubDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IRegisterUserService, RegisterUserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 var app = builder.Build();
 
